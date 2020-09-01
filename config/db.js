@@ -6,7 +6,8 @@ const connectMongo = ()=>{
     mongoose.connect(URI,{
         useUnifiedTopology:true,
         useNewUrlParser:true,
-       useFindAndModify:false})
+       useFindAndModify:false,
+       useCreateIndex :true})
        .then(()=>console.log('Database connected'))
        .catch(err=> {
            console.error(err)

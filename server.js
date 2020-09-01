@@ -3,7 +3,7 @@ const { request } = require("express");
 const express =require("express");
 const connectMongo = require("./config/db");
 const app=express();
-const PORT =process.env.PORT || 8080;
+const PORT =process.env.PORT || 8081;
 
 //parse body 
 app.use(express.json({extended:false}))
