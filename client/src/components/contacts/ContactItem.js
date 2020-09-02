@@ -11,9 +11,7 @@ const ContactItem = ({ contact,onDelete,setCurrent,clearCurrent }) => {
     clearCurrent();
 
   }
-  const onEdit=()=>{
-    console.log()
-  }
+  
   return (
     <div className="card bg-light">
       <h3 className="text-primary text-left">

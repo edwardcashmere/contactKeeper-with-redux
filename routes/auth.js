@@ -56,7 +56,7 @@ router.post('/',[
         }
         jwt.sign(payload,config.get("secret"),{expiresIn:"3600s"},(err,token)=>{
             if (err) throw err;
-            res.json({token})
+            res.json({token,user:{id:user.id,name:user.name,email:user.email}})
         })
         
     } catch (error) {
