@@ -1,9 +1,15 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import Contact from '../contacts/Contact';
 import ContactForm from '../contacts/ContactForm';
+import {connect } from 'react-redux';
+import { loadUser } from '../../actions/authActions'
 import ContactFilter from '../contacts/ContactFilter';
 
-const Home = () => {
+const Home = ({loadUser}) => {
+  useEffect(()=>{
+    loadUser()
+    //eslint-disable-next-line
+  },[])
   return (
     <div className='grid-2'>
       <div>
@@ -18,4 +24,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default connect('',{loadUser})(Home);

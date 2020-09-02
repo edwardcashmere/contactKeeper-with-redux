@@ -37,7 +37,7 @@ router.post('/',[
         }
         jwt.sign(payload,config.get("secret"),{expiresIn:"3600"},(err,token)=>{
             if (err) throw err
-            res.json({token})
+            res.json({token,user:{name:newUser.name,email:newUser.email,id:newUser.id}})
         })
        // res.send("success user registartion")
 
