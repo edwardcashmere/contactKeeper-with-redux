@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
+import { connect }  from 'react-redux';
+import { setAlert} from '../../actions/alertactions.js';
+import { login,clearErrors,loadUser } from '../../actions/authActions.js';
 
-const Login = () => {
+const Login = ({login,setAlert,isAuthenticated,error,clearErrors,history,token,loadUser}) => {
   const [user, setUser] = useState({
     email: '',
     password: '',
@@ -9,9 +12,28 @@ const Login = () => {
   const onChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
+  useEffect(()=>{
+    if(isAuthenticated ){
+      history.push('/')
+    }
+    if(token){
+      loadUser()
+    }
+
+    if(error === 'Invalid Credentials'){
+      setAlert('Invalid Credentials','danger')
+      clearErrors()
+    }
+    //eslint-disable-next-line
+  },[error,isAuthenticated,history])
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log('logged in');
+    if(email === '' || password === '') {
+      setAlert('Fields cannot be empty','danger');
+      clearErrors()
+    }else{
+      login({email,password})
+    };
   };
   return (
     <div className="form-container">
@@ -41,5 +63,9 @@ const Login = () => {
     </div>
   );
 };
-
-export default Login;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  token: state.auth.token,
+  error: state.auth.error
+})
+export default connect(mapStateToProps,{setAlert,login,clearErrors,loadUser})(Login);

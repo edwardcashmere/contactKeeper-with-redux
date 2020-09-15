@@ -43,8 +43,29 @@ export const clearErrors=()=>{
 
 
 //login success
+export const login=(user)=>async dispatch=>{
+  const config={
+    headers: { 'Content-Type': 'application/json'}
+  }
+try {
+  dispatch({ type:SET_LOADING})
+  const res=await axios.post('http://localhost:8081/api/auth',user,config);
+  dispatch({ type:LOGIN_SUCCESS,payload:res.data})
+
+} catch (error) {
+  dispatch({ type:LOGIN_FAIL,payload:error.reponse.data.msg})
+
+  
+}
+}
+
 
 //logout success
+export const logout =()=>{
+  return {
+    type:LOGOUT
+  }
+}
 
 
 //load user
@@ -61,7 +82,7 @@ try {
   dispatch({ type:USER_LOADED,payload:res.data})
   
 } catch (error) {
-  dispatch({ type:AUTH_ERROR,error:error.response.data.msg})
+  dispatch({ type:AUTH_ERROR,error:error.response})
   
 }
 }
