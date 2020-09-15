@@ -12,7 +12,7 @@ module.exports=(req,res,next)=>{
         next();
         
     } catch (error) {
-        res.status(401).json({msg:"token is Invalid"})
+        res.status(401).json({msg:error.message})
         
     }
 

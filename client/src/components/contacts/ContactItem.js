@@ -5,9 +5,9 @@ import {onDelete,setCurrent,clearCurrent} from '../../actions/contactActions'
 
 
 const ContactItem = ({ contact,onDelete,setCurrent,clearCurrent }) => {
-  const { id, name, email, phone, type } = contact;
+  const { _id, name, email, phone, type } = contact;
   const Remove=()=>{
-    onDelete(id);
+    onDelete(_id);
     clearCurrent();
 
   }

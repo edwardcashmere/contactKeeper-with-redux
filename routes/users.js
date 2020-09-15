@@ -35,9 +35,9 @@ router.post('/',[
             user:{id:newUser.id
             }     
         }
-        jwt.sign(payload,config.get("secret"),{expiresIn:"3600"},(err,token)=>{
+        jwt.sign(payload,config.get("secret"),{expiresIn:"86400s"},(err,token)=>{
             if (err) throw err
-            res.json({token,user:{name:newUser.name,email:newUser.email,id:newUser.id}})
+            res.json({token})
         })
        // res.send("success user registartion")
 
