@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 const path= require('path')
+=======
+>>>>>>> aad872f651c53d9ee9f5eeccda6348d935d60ec7
 
+const cors=require('cors')
 const express =require("express");
 const connectMongo = require("./config/db");
 const app=express();
@@ -7,7 +11,7 @@ const PORT =process.env.PORT || 8081;
 
 //parse body 
 app.use(express.json({extended:false}))
-
+app.use(cors())
 
 //bring in database
 connectMongo()
