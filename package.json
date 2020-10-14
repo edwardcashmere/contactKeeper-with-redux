@@ -8,6 +8,9 @@
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "clientinstall": "npm install --prefix client",
+    "project-local": "npm install && npm run clientinstall && npm run dev",
+    "prod": " export NODE_ENV=production && npm install && npm install --prefix client && npm run build --prefix client && npm start",
+    "prod2": " export NODE_ENV=production && npm install && npm install --prefix client && npm run build --prefix client && pm2 start server.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
